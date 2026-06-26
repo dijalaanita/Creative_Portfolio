@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rendezvous | Anita Dijala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand">ANITA DIJALA</div>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="fittings.html">Fittings</a>
+        <a href="house-of-david.html">House of David</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Rendezvous</p>
+          <h1>Editorial Fashion Styling</h1>
+          <p class="hero-text">A stylized editorial collaboration with photographer and creative director Naren, built through wardrobe direction, silhouette development, and visual storytelling.</p>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-card">
+            <img src="Rendezvous/Look%201.jpg" alt="Rendezvous preview" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="details">
+        <div class="section-heading">
+          <p class="eyebrow">Project Details</p>
+          <h2>Rendezvous</h2>
+        </div>
+        <div class="project-grid">
+          <div class="project-copy">
+            <div class="project-block">
+              <h4>Overview</h4>
+              <p>Rendezvous was an editorial fashion project created in collaboration with photographer and creative director Naren. It explored visual storytelling through carefully curated styling, composition, and character-driven fashion narratives.</p>
+              <p>As the stylist, I developed and executed the wardrobe direction for the shoot, styling six complete looks that aligned with the creative vision and strengthened the project's narrative.</p>
+            </div>
+            <div class="project-block two-column">
+              <div>
+                <h4>Responsibilities</h4>
+                <ul>
+                  <li>Fashion Styling</li>
+                  <li>Outfit Planning</li>
+                  <li>Wardrobe Coordination</li>
+                  <li>Fittings</li>
+                  <li>Look Development</li>
+                  <li>Accessory Styling</li>
+                  <li>On-Set Styling Support</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Deliverables</h4>
+                <ul>
+                  <li>6 Styled Looks</li>
+                  <li>Editorial Images</li>
+                  <li>Styling Direction</li>
+                  <li>Fitting Documentation</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-block">
+              <h4>Team</h4>
+              <p>Photographer & Creative Director: Naren</p>
+              <p>Stylist: Anita Dijala</p>
+            </div>
+          </div>
+          <div class="project-visuals">
+            <div class="slideshow" id="slideshow-rendezvous">
+              <button class="slide-btn prev" data-target="rendezvous">‹</button>
+              <div class="slides" id="slides-rendezvous"></div>
+              <button class="slide-btn next" data-target="rendezvous">›</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <p class="eyebrow">Back</p>
+        <h2><a href="index.html">Return to Portfolio</a></h2>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:hello@example.com">EMAIL</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noreferrer">INSTAGRAM</a>
+      </div>
+    </footer>
+  </div>
+  <script>
+    const images = [
+      'Group 1.jpg',
+      'Group 2.jpg',
+      'Group look.jpg',
+      'Look 1.jpg',
+      'Look 2.jpg',
+      'Look 3.jpg',
+      'Look 4.jpg',
+      'Look 5.jpg',
+      'Look 6.jpg'
+    ];
+
+    let slideIndex = 0;
+    let slideTimer;
+
+    function buildSlideshow() {
+      const container = document.getElementById('slides-rendezvous');
+      images.forEach((filename, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide-item';
+        if (index === 0) slide.classList.add('active');
+        const img = document.createElement('img');
+        img.src = `Rendezvous/${encodeURIComponent(filename)}`;
+        img.alt = `Rendezvous image ${index + 1}`;
+        img.loading = 'lazy';
+        slide.appendChild(img);
+        container.appendChild(slide);
+      });
+    }
+
+    function changeSlide(direction) {
+      const slides = document.querySelectorAll('#slides-rendezvous .slide-item');
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + direction + slides.length) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+
+    function startAuto() {
+      slideTimer = setInterval(() => changeSlide(1), 5200);
+    }
+
+    function pauseAuto() {
+      clearInterval(slideTimer);
+    }
+
+    document.querySelectorAll('.slide-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        changeSlide(button.classList.contains('next') ? 1 : -1);
+      });
+    });
+
+    const slideshow = document.getElementById('slideshow-rendezvous');
+    slideshow.addEventListener('mouseenter', pauseAuto);
+    slideshow.addEventListener('mouseleave', startAuto);
+
+    buildSlideshow();
+    startAuto();
+  </script>
+</body>
+</html>

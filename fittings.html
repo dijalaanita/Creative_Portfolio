@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fittings | Anita Dijala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand">ANITA DIJALA</div>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="rendezvous.html">Rendezvous</a>
+        <a href="house-of-david.html">House of David</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Fittings</p>
+          <h1>Fitting Page</h1>
+          <p class="hero-text">A dedicated fitting page showcasing styling direction, wardrobe coordination, and look development across editorial and campaign work.</p>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-card">
+            <img src="Rendezvous/Look%201.jpg" alt="Fitting page preview" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="details">
+        <div class="section-heading">
+          <p class="eyebrow">Fitting Work</p>
+          <h2>Wardrobe Direction & Look Development</h2>
+        </div>
+        <div class="project-grid">
+          <div class="project-copy">
+            <div class="project-block">
+              <h4>Overview</h4>
+              <p>This page highlights fitting and styling processes, with a focus on outfit planning, silhouette development, accessory pairing, and stylist support throughout production.</p>
+              <p>The work shown here includes styling deliverables from editorial and brand campaigns, all assembled to demonstrate the fitting process from concept to final imagery.</p>
+            </div>
+            <div class="project-block two-column">
+              <div>
+                <h4>Focus Areas</h4>
+                <ul>
+                  <li>Outfit Styling</li>
+                  <li>Wardrobe Coordination</li>
+                  <li>Fittings</li>
+                  <li>Look Development</li>
+                  <li>Accessory Styling</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Deliverables</h4>
+                <ul>
+                  <li>Moodboards</li>
+                  <li>Fetched Looks</li>
+                  <li>Fitting Imagery</li>
+                  <li>Styling Notes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="project-visuals">
+            <div class="slideshow" id="slideshow-fittings">
+              <button class="slide-btn prev" data-target="fittings">‹</button>
+              <div class="slides" id="slides-fittings"></div>
+              <button class="slide-btn next" data-target="fittings">›</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <p class="eyebrow">Back</p>
+        <h2><a href="index.html">Return to Portfolio</a></h2>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:hello@example.com">EMAIL</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noreferrer">INSTAGRAM</a>
+      </div>
+    </footer>
+  </div>
+  <script>
+    const images = [
+      'Look 1.jpg',
+      'Look 2.jpg',
+      'Look 3.jpg',
+      'Look 4.jpg',
+      'Look 5.jpg',
+      'Look 6.jpg',
+      'photo_1_2026-06-07_15-38-09.jpg',
+      'photo_2_2026-06-07_15-38-09.jpg',
+      'photo_3_2026-06-07_15-38-09.jpg',
+      'photo_4_2026-06-07_15-38-09.jpg'
+    ];
+
+    const folders = [
+      'Rendezvous',
+      'Rendezvous',
+      'Rendezvous',
+      'Rendezvous',
+      'Rendezvous',
+      'Rendezvous',
+      'Jireh',
+      'Jireh',
+      'Jireh',
+      'Jireh'
+    ];
+
+    let slideIndex = 0;
+    let slideTimer;
+
+    function buildSlideshow() {
+      const container = document.getElementById('slides-fittings');
+      images.forEach((filename, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide-item';
+        if (index === 0) slide.classList.add('active');
+        const img = document.createElement('img');
+        img.src = `${folders[index]}/${encodeURIComponent(filename)}`;
+        img.alt = `Fittings image ${index + 1}`;
+        img.loading = 'lazy';
+        slide.appendChild(img);
+        container.appendChild(slide);
+      });
+    }
+
+    function changeSlide(direction) {
+      const slides = document.querySelectorAll('#slides-fittings .slide-item');
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + direction + slides.length) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+
+    function startAuto() {
+      slideTimer = setInterval(() => changeSlide(1), 5200);
+    }
+
+    function pauseAuto() {
+      clearInterval(slideTimer);
+    }
+
+    document.querySelectorAll('.slide-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        changeSlide(button.classList.contains('next') ? 1 : -1);
+      });
+    });
+
+    const slideshow = document.getElementById('slideshow-fittings');
+    slideshow.addEventListener('mouseenter', pauseAuto);
+    slideshow.addEventListener('mouseleave', startAuto);
+
+    buildSlideshow();
+    startAuto();
+  </script>
+</body>
+</html>
