@@ -495,3 +495,53 @@ body::before {
     width: 100%;
   }
 }
+
+/* --- MEDIA KIT STYLES --- */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.content-column h4 {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b5d4f;
+  text-align: center;
+}
+
+.phone-mockup {
+  aspect-ratio: 9/16;
+  border-radius: 24px;
+  margin-bottom: 20px;
+}
+
+.brands-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(255, 250, 245, 0.6);
+  border: 1px solid rgba(139, 115, 88, 0.16);
+  border-radius: 24px;
+}
+
+.brand-tag {
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #2f2a23;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Add a bit of font variety to the brand tags for that collage look */
+.brand-tag:nth-child(even) {
+  font-weight: 400;
+  font-style: italic;
+  color: #5f5247;
+}
