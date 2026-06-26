@@ -519,29 +519,77 @@ body::before {
   margin-bottom: 20px;
 }
 
+/* Floating Profile Circle */
+.profile-circle {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  animation: floatProfile 5s ease-in-out infinite;
+}
+
+/* Overriding the default hover transform for the profile circle so it doesn't interrupt the float */
+.profile-circle:hover {
+  transform: none; 
+}
+
+@keyframes floatProfile {
+  0% { transform: translateY(0px); }
+  50% { 
+    transform: translateY(-20px); 
+    box-shadow: 0 35px 65px rgba(79, 59, 41, 0.15); 
+  }
+  100% { transform: translateY(0px); }
+}
+
+/* Brand Logos Container */
 .brands-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 32px 56px;
   justify-content: center;
-  padding: 40px;
+  align-items: center;
+  padding: 48px;
   background: rgba(255, 250, 245, 0.6);
   border: 1px solid rgba(139, 115, 88, 0.16);
   border-radius: 24px;
 }
 
-.brand-tag {
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
-  font-weight: 800;
-  color: #2f2a23;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1;
+/* Aesthetic Brand Logos */
+.brand-logo {
+  max-height: 45px;
+  max-width: 160px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.65);
+  transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-/* Add a bit of font variety to the brand tags for that collage look */
-.brand-tag:nth-child(even) {
-  font-weight: 400;
-  font-style: italic;
+.brand-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.08);
+}
+
+/* Aesthetic Return Link */
+.return-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2f2a23;
+  text-decoration: none;
+  padding-bottom: 4px;
+  transition: gap 0.3s ease, color 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.return-link svg {
+  transition: transform 0.3s ease;
+}
+
+.return-link:hover {
   color: #5f5247;
+  gap: 20px; /* Pushes the arrow out nicely on hover */
+  border-bottom: 2px solid rgba(139, 115, 88, 0.3);
 }
